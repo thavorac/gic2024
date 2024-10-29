@@ -1,9 +1,8 @@
-import { IsString, MinLength, MaxLength, IsNumber } from 'class-validator';
+import { IsString, MinLength, IsNumber } from 'class-validator';
 
 export class CreateCategoryDto {
   @IsString()
-  @MinLength(3, { message: 'Username must be at least 3 characters long' })
-  @MaxLength(50, { message: 'Username must be at most 20 characters long' })
+  @MinLength(3, { message: 'Name must be at least 3 characters long' })
   name: string;
 
   @IsNumber()
