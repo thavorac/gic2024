@@ -1,20 +1,27 @@
 <template>
   <div class="container">
-    {{ count }}
+    {{ store.count }}
     <br /><br /><br />
     <button @click="increaseCount">Increase</button>
   </div>
 </template>
 <script>
+import { useCounterStore } from "@/stores/counter";
 export default {
+  setup() {
+    const store = useCounterStore();
+    return {
+      store,
+    };
+  },
   data() {
     return {
-      count: 0,
+      // count: this.store.count,
     };
   },
   methods: {
     increaseCount() {
-      this.count++;
+      this.store.count++;
     },
   },
 };
