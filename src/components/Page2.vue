@@ -1,10 +1,11 @@
 <template>
   <div class="navbar">
     <span class="link" @click="goToPage('/page1')">Go Page 1</span> |
-    <span class="link" @click="goToPage('/page3')">Go Page 3</span>
+    <span class="link" @click="goToPage('/page3/from-page-2')">Go Page 3</span>
   </div>
   <div class="container">
     <p>Page 2</p>
+    <p>Query Params: {{ $route.query.msg }}</p>
   </div>
 </template>
 
