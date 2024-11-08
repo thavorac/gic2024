@@ -1,7 +1,9 @@
 <template>
   <div class="navbar">
-    <span class="link" @click="goToPage('/page2')">Go Page 2</span> |
-    <span class="link" @click="goToPage('/page3')">Go Page 3</span>
+    <!-- <span class="link" @click="goToPage('/page2')">Go Page 2</span> | -->
+    <!-- <span class="link" @click="goToPage('/page3')">Go Page 3</span> -->
+    <router-link to="/page2">Go Page 2</router-link>
+    <router-link to="/page3">Go Page 3</router-link>
   </div>
   <div class="container">
     <p>Page 1</p>
@@ -10,13 +12,6 @@
 
 <script>
 import { RouterLink, RouterView } from "vue-router";
-export default {
-  methods: {
-    goToPage(url) {
-      this.$router.push(url);
-    },
-  },
-};
 </script>
 <style scoped>
 .container {
