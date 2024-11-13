@@ -14,7 +14,7 @@ import * as multer from 'multer';
 
 const multerOptions: MulterOptions = {
   storage: multer.diskStorage({
-    destination: './uploads',
+    destination: './uploads/category',
     filename: (req, file, callback) => {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
       callback(null, uniqueSuffix + '-' + file.originalname);
@@ -40,7 +40,6 @@ export class CategoriesController {
     @UploadedFile() image: Express.Multer.File,
     @Body() body: CreateCategoryDto,
   ): any {
-    console.log('Image:', image);
     const category = this.categoryService.create({
       ...body,
       image: image.path,
