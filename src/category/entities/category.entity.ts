@@ -15,4 +15,7 @@ export class Category extends Model {
 
   @Column
   image: string;
+
+  @Column
+  group: string;
 }

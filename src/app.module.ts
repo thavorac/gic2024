@@ -6,6 +6,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { dataBaseConfig } from './database/database.config';
 import { PromotionsModule } from './promotion/promotion.module';
 import { GroupsModule } from './group/group.module';
+import { ProductsModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { GroupsModule } from './group/group.module';
     CategoriesModule,
     PromotionsModule,
     GroupsModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
