@@ -1,6 +1,8 @@
 <template>
-  App Vue
-  <router-view />
+  <div>
+    User Information
+    <router-view />
+  </div>
 </template>
 <script>
 import { RouterView } from "vue-router";
