@@ -18,4 +18,25 @@ export class CategoriesService {
   findAll() {
     return this.categoryRepository.findAll();
   }
+
+  update(id: number, updateCategoryDto: UpdateCategoryDto) {
+    const result = this.categoryRepository.update(updateCategoryDto as any, {
+      where: { id },
+      returning: true,
+    });
+
+    if (!result) {
+      throw new Error('Category not found');
+    }
+
+    return 'update success';
+  }
+
+  delete(id: number) {
+    const result = this.categoryRepository.destroy({ where: { id } });
+    if (!result) {
+      throw new Error('Category not found');
+    }
+    return 'delete success';
+  }
 }

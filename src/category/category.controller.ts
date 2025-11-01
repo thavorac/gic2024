@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
+  Patch,
   Post,
   UploadedFile,
   UseInterceptors,
@@ -45,5 +48,25 @@ export class CategoriesController {
       image: image.path,
     });
     return category;
+  }
+
+  @Patch(':id')
+  @UseInterceptors(FileInterceptor('image', multerOptions))
+  updateCategory(
+    @Param('id') id: number,
+    @UploadedFile() image: Express.Multer.File,
+    @Body() body: CreateCategoryDto,
+  ): any {
+    const category = this.categoryService.update(id, {
+      ...body,
+      image: image.path,
+    });
+    return category;
+  }
+
+  @Delete(':id')
+  deleteCategory(@Param('id') id: number): any {
+    const result = this.categoryService.delete(id);
+    return result;
   }
 }
