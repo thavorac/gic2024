@@ -36,7 +36,7 @@ export class ProductsController {
   }
 
   @Post()
-  @UseInterceptors(FilesInterceptor('images', 10, multerOptions))
+  @UseInterceptors(FilesInterceptor('image', 10, multerOptions))
   createProduct(
     @UploadedFiles() images: Array<Express.Multer.File>,
     @Body() body: any,
