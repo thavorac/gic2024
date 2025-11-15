@@ -18,4 +18,16 @@ export class ProductsService {
   findAll() {
     return this.productRepository.findAll();
   }
+
+  update(id: number, updateProductDto: any) {
+    return this.productRepository.update(updateProductDto as any, {
+      where: { id },
+    });
+  }
+
+  delete(id: number) {
+    return this.productRepository.destroy({
+      where: { id },
+    });
+  }
 }

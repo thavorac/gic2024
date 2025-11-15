@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Param,
+  Patch,
   Post,
   UploadedFile,
   UploadedFiles,
@@ -12,6 +15,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
 import * as multer from 'multer';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 const multerOptions: MulterOptions = {
   storage: multer.diskStorage({
@@ -53,5 +57,40 @@ export class ProductsController {
       image: JSON.stringify(imagesPath),
     });
     return product;
+  }
+
+  @Patch(':id')
+  @UseInterceptors(FilesInterceptor('image', 10, multerOptions))
+  updateProduct(
+    @Param('id') id: number,
+    @UploadedFiles() images: Array<Express.Multer.File>,
+    @Body() body: UpdateProductDto,
+  ): any {
+    const imagesPath = [];
+    if (images) {
+      for (const image of images) {
+        imagesPath.push(image.path);
+      }
+    }
+    console.log('update', id, body, imagesPath);
+    const result = this.productService.update(id, {
+      ...body,
+      image: JSON.stringify(imagesPath),
+    });
+    if (result) {
+      return { message: 'Product updated successfully' };
+    } else {
+      return { message: 'Product not found' };
+    }
+  }
+
+  @Delete(':id')
+  deleteProduct(@Param('id') id: number): any {
+    const result = this.productService.delete(id);
+    if (result) {
+      return { message: 'Product deleted successfully' };
+    } else {
+      return { message: 'Product not found' };
+    }
   }
 }

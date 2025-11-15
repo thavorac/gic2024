@@ -1,4 +1,4 @@
-import { IsString, MinLength, IsNumber } from 'class-validator';
+import { IsString, MinLength, IsNumber, IsOptional } from 'class-validator';
 
 export class UpdateProductDto {
   @IsString()
@@ -6,20 +6,30 @@ export class UpdateProductDto {
   name: string;
 
   @IsNumber()
+  @IsOptional()
   rating: number;
 
-  @IsString()
-  size: string;
-
-  @IsString()
-  image: string;
+  @IsNumber()
+  @IsOptional()
+  countSold: number;
 
   @IsNumber()
+  @IsOptional()
+  promotionAsPercentage: number;
+
+  @IsString()
+  @IsOptional()
+  size: string;
+
+  // @IsString()
+  // @IsOptional()
+  // image: string;
+
+  @IsNumber()
+  @IsOptional()
   price: number;
 
   @IsNumber()
-  promotionAsPercentage: number;
-
-  @IsNumber()
+  @IsOptional()
   categoryId: number;
 }
